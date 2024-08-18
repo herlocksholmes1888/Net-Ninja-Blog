@@ -3,18 +3,24 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+app.set("view engine", "ejs");
+
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
 
 app.get("/", (req, res) => {
-    res.sendFile("./views/test.html", { root: __dirname });
+    res.render("index");
 });
 
-app.get("/test", (req, res) => {
-    res.redirect("/");
+app.get("/about", (req, res) => {
+    res.render("about");
+});
+
+app.get("/blogs/create", (req, res) => {
+    res.render("create");
 });
 
 app.use((req, res) => {
-    res.status(404).sendFile("./views/404.html", { root: __dirname });
+    res.status(404).render("404");
 });

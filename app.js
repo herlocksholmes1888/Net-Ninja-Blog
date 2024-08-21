@@ -11,6 +11,16 @@ app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
 
+app.use((req, res, next) => {
+    console.log("New request made: ");
+    console.log("host: ", req.hostname);
+    console.log("path: ", req.path);
+    console.log("method: ", req.method);
+    // next() makes it so that Express moves on after
+    // the middleware is called
+    next();
+});
+
 // GET Requests
 app.get("/", (req, res) => {
     const blogs = [

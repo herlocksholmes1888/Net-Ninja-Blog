@@ -1,4 +1,5 @@
 const express = require("express");
+const morgan = require("morgan");
 
 const app = express();
 const port = 3000;
@@ -11,6 +12,9 @@ app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
 
+app.use(morgan("dev"));
+
+/*
 app.use((req, res, next) => {
     console.log("New request made: ");
     console.log("host: ", req.hostname);
@@ -19,7 +23,7 @@ app.use((req, res, next) => {
     // next() makes it so that Express moves on after
     // the middleware is called
     next();
-});
+}); */
 
 // GET Requests
 app.get("/", (req, res) => {

@@ -12,18 +12,9 @@ app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
 
+// Middleware & Static Files
+app.use(express.static('public'));
 app.use(morgan("dev"));
-
-/*
-app.use((req, res, next) => {
-    console.log("New request made: ");
-    console.log("host: ", req.hostname);
-    console.log("path: ", req.path);
-    console.log("method: ", req.method);
-    // next() makes it so that Express moves on after
-    // the middleware is called
-    next();
-}); */
 
 // GET Requests
 app.get("/", (req, res) => {
